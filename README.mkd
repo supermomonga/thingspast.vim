@@ -1,0 +1,15 @@
+
+## ThingsPast.vim
+
+ThigsPast.vim is the plugin to manage notification of other vim plugins.
+
+## For developer
+
+Now, you don't need to think about notification of your plugins anymore.
+Only you need to do is the execute ThingsPast.vim's API.
+
+## For enduser
+
+You can manage all notifications in a ThingsPast.vim's buffer.
+
+
