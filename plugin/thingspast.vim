@@ -15,11 +15,6 @@ nnoremap <Plug>(thingspast#toggle_list)  :<C-u>call thingspast#toggle_list()<CR>
 nnoremap <Plug>(thingspast#prev_thing)  :<C-u>call thingspast#prev_thing()<CR>
 nnoremap <Plug>(thingspast#next_thing)  :<C-u>call thingspast#next_thing()<CR>
 
-let g:vimshell_inline_history#default_mappings = get(g:, 'vimshell_inline_history#default_mappings', 1)
-if g:vimshell_inline_history#default_mappings
-  autocmd MyAutoCmd FileType vimshell call vimshell_inline_history#default_mappings()
-endif
-
 let g:thingspast_set_default_mappings = get(g:, 'thingspast_set_default_mappings', 1)
 if g:thingspast_set_default_mappings
   nmap <Space>n  <Plug>(thingspast#toggle_list)
