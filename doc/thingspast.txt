@@ -49,39 +49,35 @@ USAGE						*thingspast-usage*
 
 
 
+
 ==============================================================================
 INTERFACE					*thingspast-interface*
 
 ------------------------------------------------------------------------------
 VARIABLES					*thingspast-variables*
 
-				*g:vimshell_inline_history#default_mappings*
-g:vimshell_inline_history#default_mappings
-	default value: 1
-
-
 g:thingspast_set_default_mappings	*g:thingspast_set_default_mappings*
+	If it is 1, this plugin sets mappings to use.
 	default value: 1
 
 
 g:thingspast_set_default_mappings_list	*g:thingspast_set_default_mappings_list*
+	If it is 1, this plugin sets mappings in thingspast buffer.
 	default value: 1
 
 
-g:thingspast_things				*g:thingspast_things*
-	default value: {}
-	default value: eval(join(readfile(g:thingspast_cache_file), "\n"))
-
-
 g:thingspast_cache_file				*g:thingspast_cache_file*
+	Path to cache file.
 	default value: expand("~/.thingspast")
 
 
 g:thingspast_mark_arrow				*g:thingspast_mark_arrow*
+	The arrow mark displayed in thingspast buffer.
 	default value: ">"
 
 
 g:thingspast_split_width			*g:thingspast_split_width*
+	Split width of thingspast buffer.
 	default value: 40
 
 
@@ -89,25 +85,29 @@ g:thingspast_split_width			*g:thingspast_split_width*
 KEY-MAPPINGS					*thingspast-key-mappings*
 
 <Plug>(thingspast#exec_thing)		*<Plug>(thingspast#exec_thing)*
-	有効モード: normal
+	Execute callback function of selected Thing and delete thing.
+	available mode: normal
 	default mapping (buffer local):
 		normal:	<CR>
 
 
 <Plug>(thingspast#toggle_list)		*<Plug>(thingspast#toggle_list)*
-	有効モード: normal
+	Toggle thingspast buffer window.
+	available mode: normal
 	default mappings (global):
 		normal:	<Space>n
 
 
 <Plug>(thingspast#prev_thing)		*<Plug>(thingspast#prev_thing)*
-	有効モード: normal
+	Select previous thing in thingspast buffer.
+	available mode: normal
 	default mapping (buffer local):
 		normal:	k <C-p>
 
 
 <Plug>(thingspast#next_thing)		*<Plug>(thingspast#next_thing)*
-	有効モード: normal
+	Select next thing in thingspast buffer.
+	available mode: normal
 	default mapping (buffer local):
 		normal:	j <C-n>
 
@@ -137,93 +137,68 @@ FUNCTIONS					*thingspast-functions*
 
 						*thingspast#add()*
 thingspast#add({identity}, {scope}, {title}, {message}, {callback}, {callback-args})
+	Add the thing to thingspast's things list.
 
 
 thingspast#clear()				*thingspast#clear()*
+	Clear all things from things list.
 
 
 thingspast#close()				*thingspast#close()*
+	Close thingspast buffer window.
 
 
 thingspast#current_index()			*thingspast#current_index()*
-
-
-thingspast#default_mappings_list()	*thingspast#default_mappings_list()*
+	Get current selected thing's index.
 
 
 thingspast#delete_thing({thing})		*thingspast#delete_thing()*
-
-
-thingspast#draw()				*thingspast#draw()*
-
-
-thingspast#exec_thing()				*thingspast#exec_thing()*
-
-
-thingspast#execute({thing})			*thingspast#execute()*
+	Delete thing from thingspast's things list.
 
 
 thingspast#is_open()				*thingspast#is_open()*
+	If the thingspast buffer is opened, it returns 1.
+	If not, returns 0.
 
 
 thingspast#load()				*thingspast#load()*
-
-
-thingspast#move()				*thingspast#move()*
-
-
-thingspast#next_thing()				*thingspast#next_thing()*
-
-
-thingspast#nth_thing({index})			*thingspast#nth_thing()*
-
-
-thingspast#open()				*thingspast#open()*
-
-
-thingspast#prev_thing()				*thingspast#prev_thing()*
+	Load things from cache file.
 
 
 thingspast#save()				*thingspast#save()*
+	Save things to cache file.
 
 
-thingspast#scopes({identity})			*thingspast#scopes()*
+thingspast#move()				*thingspast#move()*
+	Move to thingspast buffer window if it is opened.
 
 
-thingspast#things()				*thingspast#things()*
+thingspast#next_thing()				*thingspast#next_thing()*
+	Select next thing in thingspast buffer.
 
 
-thingspast#things_lines()			*thingspast#things_lines()*
+thingspast#prev_thing()				*thingspast#prev_thing()*
+	Select previous thing in thingspast buffer.
 
 
-thingspast#things_list()			*thingspast#things_list()*
+thingspast#nth_thing({index})			*thingspast#nth_thing()*
+	It returns the nth-thing.
 
 
-thingspast#toggle_list()			*thingspast#toggle_list()*
+thingspast#open()				*thingspast#open()*
+	Open thingspast buffer window.
 
-
-					*thingspast#util#combine_width()*
-thingspast#util#combine_width({l}, {r}, {width})
-
-
-						*thingspast#util#fill()*
-thingspast#util#fill({text}, {width}, {fill-chr})
-
-
-						*thingspast#util#format()*
-thingspast#util#format({text}, {width}, {ellipsis}, {style})
-
-
-thingspast#util#pasttime({timestamp})		*thingspast#util#pasttime()*
-
-
-						*thingspast#util#truncate()*
-thingspast#util#truncate({text}, {max-width}, {ellipsis})
 
 
 ==============================================================================
 TODO						*thingspast-todo*
 
+
+- Refactoring whole codes
+- Syntax highlight
+- Animation support
+- Move latest added thing's plugin to top of the list
+- Example settings
 
 
 ==============================================================================
