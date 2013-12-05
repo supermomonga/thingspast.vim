@@ -22,6 +22,9 @@ endif
 
 let g:thingspast_set_default_mappings_list = get(g:, 'thingspast_set_default_mappings_list', 1)
 if g:thingspast_set_default_mappings_list
+  augroup plugin-thingspast
+    autocmd!
+  augroup END
   autocmd plugin-thingspast BufEnter thingspast call thingspast#default_mappings_list()
 endif
 
