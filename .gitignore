@@ -1,0 +1,5 @@
+/doc/tags*
+
+.Gemfile.lock
+.VimFlavor.lock
+.vim-flavor
