@@ -199,6 +199,10 @@ TODO						*thingspast-todo*
 - Animation support
 - Move latest added thing's plugin to top of the list
 - Example settings
+- Share vital objects between plugin files
+- Implement hook feature
+- Example hook setting for Shaberu.vim
+- Handy functions for status line support
 
 
 ==============================================================================
