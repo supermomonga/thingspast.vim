@@ -24,8 +24,8 @@ let g:thingspast_set_default_mappings_list = get(g:, 'thingspast_set_default_map
 if g:thingspast_set_default_mappings_list
   augroup plugin-thingspast
     autocmd!
+    autocmd BufEnter thingspast call thingspast#default_mappings_list()
   augroup END
-  autocmd plugin-thingspast BufEnter thingspast call thingspast#default_mappings_list()
 endif
 
 
