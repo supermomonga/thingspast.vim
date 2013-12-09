@@ -1,5 +1,4 @@
-
-## ThingsPast.vim
+## ThingsPast.vim [![Build Status](https://travis-ci.org/supermomonga/thingspast.vim.png?branch=master)](https://travis-ci.org/supermomonga/thingspast.vim)
 
 ThigsPast.vim is the plugin to manage notification of other vim plugins.
 
