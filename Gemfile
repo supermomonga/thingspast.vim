@@ -1,4 +1,3 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
 
 gem 'vim-flavor', '~> 1.1'
