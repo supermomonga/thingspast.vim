@@ -88,21 +88,23 @@ function! thingspast#draw()
       let things = thingspast#things()
       for plugin in keys(things)
         for scope in keys(things[plugin]['scopes'])
-          silent put =repeat('_', window_width)
-          silent put =' ' . thingspast#util#combine_width(
-                \   plugin . ' - ' . scope,
-                \   '[' . len(things[plugin]['scopes'][scope]['things']) . ']',
-                \   window_width - 2
-                \ )
-          for thing in things[plugin]['scopes'][scope]['things']
-            silent put =' ' . g:thingspast_mark_arrow . ' ' .
-                  \   thingspast#util#combine_width(
-                  \     thing['title'],
-                  \     thingspast#util#pasttime(thing['timestamp']),
-                  \     window_width - 3 - strdisplaywidth(g:thingspast_mark_arrow)
-                  \   )
-            silent put =thingspast#util#format(thing['message'], window_width, '...', {})
-          endfor
+          if len(things[plugin]['scopes'][scope]['things']) > 0
+            silent put =repeat('_', window_width)
+            silent put =' ' . thingspast#util#combine_width(
+                  \   plugin . ' - ' . scope,
+                  \   '[' . len(things[plugin]['scopes'][scope]['things']) . ']',
+                  \   window_width - 2
+                  \ )
+            for thing in things[plugin]['scopes'][scope]['things']
+              silent put =' ' . g:thingspast_mark_arrow . ' ' .
+                    \   thingspast#util#combine_width(
+                    \     thing['title'],
+                    \     thingspast#util#pasttime(thing['timestamp']),
+                    \     window_width - 3 - strdisplaywidth(g:thingspast_mark_arrow)
+                    \   )
+              silent put =thingspast#util#format(thing['message'], window_width, '...', {})
+            endfor
+          endif
         endfor
       endfor
       normal! gg
