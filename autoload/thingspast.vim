@@ -10,7 +10,7 @@ function! thingspast#add(identity, scope, title, message, callback, callback_arg
         \   'name': a:scope,
         \   'things': []
         \ })
-  call insert(g:thingspast_things[a:identity]['scopes'][a:scope]['things'], {
+  let thing = {
         \   'plugin': a:identity,
         \   'scope': a:scope,
         \   'title': a:title,
@@ -18,9 +18,13 @@ function! thingspast#add(identity, scope, title, message, callback, callback_arg
         \   'callback': a:callback,
         \   'callback_args': a:callback_args,
         \   'timestamp': s:dt.now().unix_time()
-        \ })
+        \ }
+  call insert(g:thingspast_things[a:identity]['scopes'][a:scope]['things'], thing)
   call thingspast#save()
   call thingspast#draw()
+  for Fn in values(g:thingspast_hooks.on_add)
+    call Fn(thing)
+  endfor
 endfunction
 
 
@@ -70,6 +74,7 @@ function! thingspast#open()
   setlocal filetype=thingspast
   setlocal buftype=nofile
   setlocal nonumber
+  setlocal ambiwidth=double
   call thingspast#draw()
 endfunction
 
@@ -220,6 +225,8 @@ endfunction
 
 
 " Initialize
+let g:thingspast_hooks = get(g:, 'thingspast_hooks', {})
+let g:thingspast_hooks.on_add = get(g:thingspast_hooks, 'on_add', {})
 let g:thingspast_mark_arrow = get(g:, 'thingspast_mark_arrow', '>')
 let g:thingspast_split_width = get(g:, 'thingspast_split_width', 40)
 let s:vital = vital#of('thingspast')
