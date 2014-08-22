@@ -81,6 +81,25 @@ g:thingspast_split_width			*g:thingspast_split_width*
 	default value: 40
 
 
+g:thingspast_hooks				*g:thingspast_hooks*
+	Dictionary of hooks
+	default value: {"on_add" : {}}
+	You can add hook by editin this dictionary.
+	Available hook point is below:
+
+	"on_add":
+	This called after new thing was added. function argument is the
+	dictionary of a thing.
+
+	Example:
+	function! s:my_on_add_hook(thing)
+	  echo 'New notification: ' a:thing['message']
+	endfunction
+	let g:thingspast_hooks = {"on_add" : {}}
+	let g:thingspast_hooks.on_add['cmdline'] =
+	  \ function('s:my_on_add_hook')
+
+
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*thingspast-key-mappings*
 
