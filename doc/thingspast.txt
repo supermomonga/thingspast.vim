@@ -81,6 +81,13 @@ g:thingspast_split_width			*g:thingspast_split_width*
 	default value: 40
 
 
+g:thingspast_open_on_add			*g:thingspast_open_on_add*
+	If it is 1, this plugin opens things-list window when new thing
+	was added.
+	value type: boolean
+	default value: 1
+
+
 g:thingspast_hooks				*g:thingspast_hooks*
 	Dictionary of hooks
 	default value: {"on_add" : {}}

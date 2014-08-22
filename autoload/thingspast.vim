@@ -22,9 +22,14 @@ function! thingspast#add(identity, scope, title, message, callback, callback_arg
   call insert(g:thingspast_things[a:identity]['scopes'][a:scope]['things'], thing)
   call thingspast#save()
   call thingspast#draw()
+  " Hooks
   for Fn in values(g:thingspast_hooks.on_add)
     call Fn(thing)
   endfor
+  " Open window
+  if g:thingspast_open_on_add
+    call g:thingspast#open()
+  endif
 endfunction
 
 
@@ -227,6 +232,7 @@ endfunction
 " Initialize
 let g:thingspast_hooks = get(g:, 'thingspast_hooks', {})
 let g:thingspast_hooks.on_add = get(g:thingspast_hooks, 'on_add', {})
+let g:thingspast_open_on_add = get(g:, 'thingspast_open_on_add', 1)
 let g:thingspast_mark_arrow = get(g:, 'thingspast_mark_arrow', '>')
 let g:thingspast_split_width = get(g:, 'thingspast_split_width', 40)
 let s:vital = vital#of('thingspast')
