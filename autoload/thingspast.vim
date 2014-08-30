@@ -14,7 +14,7 @@ function! thingspast#add(identity, scope, title, message, callback, callback_arg
         \   'plugin': a:identity,
         \   'scope': a:scope,
         \   'title': a:title,
-        \   'message': a:message,
+        \   'message': substitute(a:message, '\n', '', 'g'),
         \   'callback': a:callback,
         \   'callback_args': a:callback_args,
         \   'timestamp': s:dt.now().unix_time()
