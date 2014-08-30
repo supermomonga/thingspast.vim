@@ -35,10 +35,15 @@ endfunction
 
 function! thingspast#execute(thing)
   call filter(g:thingspast_things, 'v:val != a:thing')
-  if type(a:thing.callback_args) == type('')
-    let args = [a:thing.callback_args]
-  else
+  if empty(a:thing.callback_args)
+    " Without any argument
+    let args = []
+  elseif type(a:thing.callback_args) == type([])
+    " Array argument list
     let args = a:thing.callback_args
+  else
+    " Single argument
+    let args = [a:thing.callback_args]
   endif
   call call(a:thing.callback, args)
 endfunction
@@ -201,11 +206,8 @@ endfunction
 function! thingspast#exec_thing()
   let current_index = thingspast#current_index()
   if current_index != -1
-    let current_thing = thingspast#things_list()[current_index]
-    if current_thing['callback'] != ''
-      let command = current_thing['callback'] . '(' . current_thing['callback_args'] . ')'
-      call eval(command)
-    endif
+    let current_thing = thingspast#nth_thing(current_index)
+    call thingspast#execute(current_thing)
     call thingspast#delete_thing(current_thing)
   endif
 endfunction
