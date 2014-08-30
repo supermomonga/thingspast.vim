@@ -35,7 +35,12 @@ endfunction
 
 function! thingspast#execute(thing)
   call filter(g:thingspast_things, 'v:val != a:thing')
-  call {a:thing.callback}(a:thing.callback_args)
+  if type(a:thing.callback_args) == type('')
+    let args = [a:thing.callback_args]
+  else
+    let args = a:thing.callback_args
+  endif
+  call call(a:thing.callback, args)
 endfunction
 
 
