@@ -1,7 +1,6 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-
 function! thingspast#add(identity, scope, title, message, callback, callback_args)
   let g:thingspast_things[a:identity] = get(g:thingspast_things, a:identity, {
         \   'scopes': {}
@@ -11,6 +10,7 @@ function! thingspast#add(identity, scope, title, message, callback, callback_arg
         \   'things': []
         \ })
   let thing = {
+        \   'id': max(map(thingspast#things_list(), "v:val['timestamp']")) + 1,
         \   'plugin': a:identity,
         \   'scope': a:scope,
         \   'title': a:title,
@@ -220,7 +220,7 @@ endfunction
 
 function! thingspast#delete_thing(thing)
   call filter(g:thingspast_things[a:thing['plugin']]['scopes'][a:thing['scope']]['things'],
-        \   'v:val["timestamp"] != "' . a:thing['timestamp'] . '"'
+        \   'v:val["id"] != "' . a:thing['id'] . '"'
         \ )
   call thingspast#save()
   call thingspast#draw()
