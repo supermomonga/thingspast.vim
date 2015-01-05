@@ -163,8 +163,11 @@ FUNCTIONS					*thingspast-functions*
 
 						*thingspast#add()*
 thingspast#add({identity}, {scope}, {title}, {message}, {callback}, {callback-args})
-	Add the thing to thingspast's things list.
-
+	Add the thing to thingspast's things list. {identity} is the
+	identifier for a plugin. {scope} is the kind of this thing, which
+	is defined by a plugin. {title} is a thing's title. {message} is a
+	thing's content. {callback} and {callback-args} are used when calls
+	|<Plug>(thingspast#exec_thing)|.
 
 thingspast#clear()				*thingspast#clear()*
 	Clear all things from things list.

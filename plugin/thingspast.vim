@@ -10,10 +10,10 @@ let g:loaded_thingspast = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-nnoremap <Plug>(thingspast#exec_thing)  :<C-u>call thingspast#exec_thing()<CR>
-nnoremap <Plug>(thingspast#toggle_list)  :<C-u>call thingspast#toggle_list()<CR>
-nnoremap <Plug>(thingspast#prev_thing)  :<C-u>call thingspast#prev_thing()<CR>
-nnoremap <Plug>(thingspast#next_thing)  :<C-u>call thingspast#next_thing()<CR>
+nnoremap <silent> <Plug>(thingspast#exec_thing)  :<C-u>call thingspast#exec_thing()<CR>
+nnoremap <silent> <Plug>(thingspast#toggle_list)  :<C-u>call thingspast#toggle_list()<CR>
+nnoremap <silent> <Plug>(thingspast#prev_thing)  :<C-u>call thingspast#prev_thing()<CR>
+nnoremap <silent> <Plug>(thingspast#next_thing)  :<C-u>call thingspast#next_thing()<CR>
 
 let g:thingspast_set_default_mappings = get(g:, 'thingspast_set_default_mappings', 1)
 if g:thingspast_set_default_mappings
